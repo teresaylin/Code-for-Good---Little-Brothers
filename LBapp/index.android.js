@@ -12,6 +12,8 @@ import {
   View,
   TextInput,
   TouchableHighlight,
+  Button,
+  Alert
 } from 'react-native';
 
 import Realm from 'realm'
@@ -20,11 +22,16 @@ let realm = new Realm({
   schema: [{name: 'Volunteers', properties: {name: 'string'}}]
 })
 
+const onButtonPress = () => {
+  Alert.alert('Button has been pressed')
+}
+
 class LBapp extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      input: ''
+      email: '',
+      pwd: ''
     }
   }
 
@@ -43,8 +50,31 @@ class LBapp extends Component {
           style={styles.welcome}
           placeholder='example: littlebrothers@gmail.com'
           autoCorrect={false}
-          onChangeText={(input) => this.setState({input})} 
-          value={this.state.input} />
+          onChangeText={(email) => this.setState({email})} 
+          value={this.state.email} />
+
+        <Text style={styles.instructions}>
+          Enter your password
+        </Text>
+
+        <TextInput
+          style={styles.welcome}
+          placeholder=''
+          autoCorrect={false}
+          onChangeText={(pwd) => this.setState({pwd})} 
+          value={this.state.pwd} />
+
+        <Button
+          onPress={onButtonPress}
+          title="Login"
+          color="#841584"
+          accessibilityLabel="Login" />
+
+        <Button
+          onPress={onButtonPress}
+          title="Forgot password"
+          color="#841584"
+          accessibilityLabel="Forgot password" />
 
       </View>
     );
